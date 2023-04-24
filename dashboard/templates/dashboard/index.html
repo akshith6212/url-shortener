@@ -1,0 +1,180 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:site_name" content="Ucut">
+  <meta property="og:title" content="Ucut | Custom URL Shortener" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{% static 'dashboard/favicon.png' %}" />
+  <meta property="og:url" content="http://localhost:8000/" />
+  <meta property="og:description" content="Simple Url Shortener for your usage with dashbaord makes your life easier." />
+  <title>Dashboard</title>
+  <link rel="shortcut icon" href="{% static 'dashboard/favicon.png' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{% static 'dashboard/styles.css' %}">
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="app-header">
+      <div class="app-header-left">
+        <span class="app-icon"></span>
+        <p class="app-name">ucut</p>
+        <div class="search-wrapper">
+          <input class="search-input" id="searchbar" onkeyup="search_link()" type="text" placeholder="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
+            viewBox="0 0 24 24">
+            <defs></defs>
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="M21 21l-4.35-4.35"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="app-header-right">
+        <button class="mode-switch" title="Switch Theme">
+          <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+            <defs></defs>
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+        <button class="add-btn" title="Add New Link">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-plus">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" /></svg>
+        </button>
+        <button class="profile-btn">
+          <img src="https://simpleurlshorten.s3.us-east-2.amazonaws.com/default+user.png" />
+          <span>{{name}}</span>
+        </button>
+      </div>
+      <button class="messages-btn" title="View Messages from Admin">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-message-circle">
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+      </button>
+    </div>
+    <div class="app-content">
+      <div class="app-sidebar">
+        <a href="http://localhost:8000/" class="app-sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-home">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" /></svg>
+        </a>
+        <a href="#" class="app-sidebar-link active">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            class="feather feather-pie-chart" viewBox="0 0 24 24">
+            <defs />
+            <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z" />
+          </svg>
+        </a>
+      </div>
+
+
+      <div class="projects-section">
+        <div class="projects-section-header">
+          <p>Links</p>
+          <p class="time">{{month}}, {{day}}</p>
+        </div>
+        <div class="projects-section-line">
+          <div class="projects-status">
+            <div class="item-status">
+              <span class="status-number">{{ count }}</span>
+              <span class="status-type">Links</span>
+            </div>
+          </div>
+        </div>
+
+        <table class="rtable styled-table">
+          <thead>
+            <tr>
+              <th>Shorten Link</th>
+              <th>Original Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for link in links %}
+              <tr>
+                <td><a href="http://localhost:8000/{{link.shortenurl}}" target="_blank" class="links">http://localhost:8000/{{link.shortenurl}}</a></td>
+                <td><a href="{{link.initurl}}"  class="links">{{link.initurl}}</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="messages-section hide">
+        <div class="projects-section-header">
+          <p>Messages from Admin</p>
+          <button id="close"><svg width="20px" height="20px" viewBox="0 0 24 24" preserveAspectRatio="none"
+              class="i8-icon-path">
+              <path
+                d="M6.41408 5.00002C6.0236 4.60953 5.3905 4.60953 5.00002 5.00002C4.60953 5.3905 4.60953 6.0236 5.00002 6.41408L10.586 12L5.00002 17.586C4.60953 17.9764 4.60953 18.6095 5.00002 19C5.3905 19.3905 6.0236 19.3905 6.41408 19L12 13.4141L17.586 19C17.9764 19.3905 18.6095 19.3905 19 19C19.3905 18.6095 19.3905 17.9764 19 17.586L13.4141 12L19 6.41408C19.3905 6.0236 19.3905 5.3905 19 5.00002C18.6095 4.60953 17.9764 4.60953 17.586 5.00002L12 10.586L6.41408 5.00002Z">
+              </path>
+            </svg></button>
+        </div>
+        <div class="messages">
+          <div class="message-box">
+            <img src="https://simpleurlshorten.s3.us-east-2.amazonaws.com/avatar.svg"
+              alt="profile image">
+            <div class="message-content">
+              <div class="message-header">
+                <div class="name">Admin</div>
+                <div class="star-checkbox">
+                  <input type="checkbox" id="star-1">
+                  <label for="star-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="feather feather-star">
+                      <polygon
+                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </label>
+                </div>
+              </div>
+              <p class="message-line">
+                Thankyou for creating an account 🥳. That motivates me!.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://simpleurlshorten.s3.us-east-2.amazonaws.com/dashboard-script.js"></script>
+  <script>
+    function search_link() {
+      let input = document.getElementById('searchbar').value;
+      let x = document.querySelectorAll('.links');
+
+      if (input==""){
+        for(i=0;i<x.length;i++){
+          x[i].style.display = "unset";
+        }
+      }
+    
+      for (i = 0; i < x.length; i++) {
+        if (!x[i].href.includes(input)) {
+          x[i].style.display = "none";
+        }else{
+          x[i].style.display = "unset";
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

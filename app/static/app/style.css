@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+          *, *::after, *::before {
+               margin: 0;
+               padding: 0;
+               box-sizing: inherit;
+          }
+          a {
+               text-decoration: none;
+          }
+          html {
+               font-size: 62.5%;
+          }
+          body {
+               font-family: 'Gilroy extrabold', sans-serif;
+               font-weight: 400;
+               color: #778a99;
+               background: #e0e5ec;
+               box-sizing: border-box;
+          }
+          header {
+               position: fixed;
+               top: 0;
+               padding: 3rem 4rem;
+          }
+          header h1 {
+               font-size: 3rem;
+          }
+          .main {
+               width: 100vw;
+               height: 100vh;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+          .main .content {
+               padding: 0 4rem;
+               width: 100%;
+               max-width: 100rem;
+          }
+          .main .content h2 {
+               font-size: 3.5rem;
+               margin-bottom: 1.7rem;
+               text-align: center;
+          }
+          .main .content .input-group {
+               position: relative;
+               width: 100%;
+          }
+          .main .content .neumorph-input {
+               position: absolulte;
+               display: block;
+               width: 100%;
+               max-width: 95rem;
+               border: 0;
+               color: inherit;
+               font-family: 'Open Sans', sans;
+               font-weight: 400;
+               font-size: 1.7rem;
+               padding: 1.5rem 1rem 1.5rem 2.3rem;
+               border-radius: 2.5rem;
+               box-shadow: 0 0 3rem 0 rgba(43, 86, 112, .1);
+               overflow: hidden;
+               white-space: nowrap;
+               text-overflow: ellipsis;
+          }
+          .main .content .neumorph-input:focus {
+               outline: none;
+               color: inherit;
+          }
+          .main .content .neumorph-btn {
+               position: absolute;
+               top: 0;
+               right: 0;
+               border: 0;
+               border-radius: 2.5rem;
+               line-height: 1;
+               padding: 1.8rem 1.75rem;
+               background: #778a99;
+               color: #e0e5ec;
+               font-size: 1.7rem;
+          }
+          .main .content .neumorph-btn:focus {
+               outline: none;
+          }
+          .main .content .output {
+               margin-top: 3rem;
+               margin-left: 1rem;
+               margin-right: 1rem;
+               box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #fff;
+               border-radius: 1rem;
+               padding: 1.5rem;
+               text-align: center;
+               overflow: hidden;
+               white-space: nowrap;
+               text-overflow: ellipsis;
+          }
+          .main .content .output a {
+               text-decoration: none;
+               color: inherit;
+               font-size: 1.8rem;
+               text-overflow: ellipsis;
+          }
+          .credits {
+               position: fixed;
+               top: calc(90vh);
+               left: 4rem;
+               font-family: 'Open Sans', sans-serif;
+               color: #a3b1c6;
+               font-size: 1.75rem;
+          }
+          .credits a {
+               color: #778a99;
+          }
+          @media (max-width: 576px) {
+               html {
+                    font-size: 50%;
+               }
+          }
+
+          .neumorph-input{
+               max-width: 82rem !important;
+          }
+          .navbar {
+               top: 0%;
+               left: 0%;
+               padding: 20px;
+               z-index: 10;
+               position: fixed;
+               width: 100%;
+               background-color: #E0E5ED;
+           }
+           
+           .links {
+               float: right;
+               display: inline;
+               margin-right: 3rem;
+               color: white;
+           }
+           
+           .navbar>a {
+               color: #c2cad0;
+               text-decoration: none;
+           }
+           
+           .navbar>a:hover {
+               color: skyblue;
+           }
+           
+           .navbar>a,
+           .links>a {
+               font-size: 1.6rem;
+           }
+           
+           .links>a {
+               margin: 5px;
+               color: black;
+               text-decoration: none;
+               font-size: large;
+           }
+           
+           .links>a:hover {
+               color: skyblue;
+           }
